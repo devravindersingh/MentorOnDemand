@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { HomeViewComponent } from './home-view/home-view.component';
 import { GuestSearchComponent } from './guest-search/guest-search.component';
@@ -27,11 +29,13 @@ import { AdminViewAllMentorCoursesComponent } from './admin/admin-view-all-mento
 import { RouterModule, Routes } from '@angular/router';
 import { PaymentComponent } from './payment/payment.component';
 import { MentorUpdateComponent } from './mentor/mentor-update/mentor-update.component';
+import { AuthService } from './auth.service';
 
 
 const appRoutes:Routes = [
   {path:'', component: HomeViewComponent},
   {path:'login', component: LoginComponent},
+  {path:'login/:success', component: LoginComponent},
   {path:'register', component: RegisterComponent},
   {path: 'guest', component: GuestSearchComponent},
   {path: 'payment', component: PaymentComponent},
@@ -94,9 +98,13 @@ const appRoutes:Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,19 +5,20 @@
     </button>
     <div id="navbarNavDropdown" class="navbar-collapse collapse">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" [routerLink]="['']" >Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['']" routerLinkActive="active">Home</a>
+                <!-- <span class="sr-only">(current)</span> -->
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['guest']">Courses</a>
+                <a class="nav-link" [routerLink]="['guest']" routerLinkActive="active" >Courses</a>
             </li>
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['login']" >Login</a>
+                <a class="nav-link" [routerLink]="['login']" routerLinkActive="active" >Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['register']">Register</a>
+                <a class="nav-link" [routerLink]="['register']" routerLinkActive="active">Register</a>
             </li>
         </ul>
     </div>
