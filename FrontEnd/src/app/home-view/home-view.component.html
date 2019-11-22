@@ -10,32 +10,24 @@
             <h2>Search courses from a wide variety of technologies</h2>
         </div>
         <div style="display: flex; justify-content: space-around; width: 100%; align-items: center;">
-            <div class="dropdown" >
-                <button class="btn btn-outline-primary btn-lg btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Technology
+            <div class="dropdown">
+                <button class="btn btn-outline-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{technology}}
                 </button>
-                <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div> -->
-                <select class="dropdown-menu" *ngFor="let item of technologyData">
-                        <option [ngValue]="item.id">{{item.name}}</option>
-                </select>
-
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" *ngFor="let data of technologyData" (click) = "changeTechnology(data.name,data.id)">{{data.name}}</a>
+                </div>
             </div>
             <div class="dropdown">
                 <button class="btn btn-outline-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Duration
+                {{duration}}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" *ngFor="let data of durationData" (click) = "changeDuration(data + ' weeks',data)">{{data}} weeks</a>
                 </div>
             </div>
             <div>
-                <Button type="button" class="btn btn-outline-primary btn-lg" ><a class="no-style" [routerLink]="['guest']">Search</a></Button>
+                <Button type="button" type="submit" (click)="guestSearch()" class="btn btn-outline-primary btn-lg" ><a class="no-style">Search</a></Button>
             </div>                  
         </div>
     </div>

@@ -8,9 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./home-view.component.css']
 })
 export class HomeViewComponent implements OnInit {
-
+  technology = "technology";
+  tId = 0;
+  duration = "Duration"
+  dId = 100;
   technologyData:any [];
+  durationData = ['1','2','3','4','5','6','7'];
   selected = null;
+  saerchData = {};
+
   constructor(private event : EventService, private route : Router ) {
     this.event.getTecnologies().subscribe(data=>{
       this.technologyData = data as string[];
@@ -21,8 +27,20 @@ export class HomeViewComponent implements OnInit {
   ngOnInit() {
   }
 
+  changeTechnology(name, id){
+    this.technology = name;
+    this.tId = id;
+    console.log(name + " " + id);
+  }
+
+  changeDuration(name, id){
+    this.duration = name;
+    this.dId = +id;
+    console.log(typeof(this.dId));
+  }
+
   guestSearch(d){
-    console.log(d);
+    this.route.navigate(['guest',this.dId,this.tId]);
   }
 
 }

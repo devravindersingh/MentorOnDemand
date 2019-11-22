@@ -38,6 +38,7 @@ const appRoutes:Routes = [
   {path:'login/:success', component: LoginComponent},
   {path:'register', component: RegisterComponent},
   {path: 'guest', component: GuestSearchComponent},
+  {path: 'guest/:dur/:tech', component: GuestSearchComponent},
   {path: 'payment', component: PaymentComponent},
   {path: 'admin', component: AdminComponent,
     children: [
