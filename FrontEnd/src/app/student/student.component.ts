@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StudentService } from '../student.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentComponent implements OnInit {
 
-  constructor() { }
+  studentDetail:any;
+  constructor(private student : StudentService, private route : Router) {
+    this.student.getStudentDetails(localStorage.id).subscribe(data => {
+      this.studentDetail = data as string;
+      console.log(data);
+    })
+   }
 
   ngOnInit() {
+    
+  }
+
+  goStudent(){
+    this.route.navigate(['searchCourses']);
+  }
+
+  goReq(){
+    this.route.navigate(['mySCourses']);
   }
 
 }

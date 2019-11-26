@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./home-view.component.css']
 })
 export class HomeViewComponent implements OnInit {
-  technology = "technology";
+  technology = "Technology";
   tId = 0;
   duration = "Duration"
   dId = 100;
@@ -16,7 +16,10 @@ export class HomeViewComponent implements OnInit {
   durationData = ['1','2','3','4','5','6','7'];
   selected = null;
   saerchData = {};
-
+  showpointerclass = true;
+  pointertoggle(){
+    this.showpointerclass = false;
+  }
   constructor(private event : EventService, private route : Router ) {
     this.event.getTecnologies().subscribe(data=>{
       this.technologyData = data as string[];
@@ -31,6 +34,7 @@ export class HomeViewComponent implements OnInit {
     this.technology = name;
     this.tId = id;
     console.log(name + " " + id);
+    this.pointertoggle();
   }
 
   changeDuration(name, id){
@@ -42,5 +46,7 @@ export class HomeViewComponent implements OnInit {
   guestSearch(d){
     this.route.navigate(['guest',this.dId,this.tId]);
   }
+
+  
 
 }

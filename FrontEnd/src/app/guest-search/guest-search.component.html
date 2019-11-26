@@ -10,7 +10,7 @@
                     (click)="changeTechnology(data.name,data.id)">{{data.name}}</a>
             </div>
         </div>
-        <div class="dropdown">
+        <div class="dropdown" [ngClass]="{pointertoggle: showpointerclass}">
             <button class="btn btn-outline-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{duration}}
@@ -20,7 +20,7 @@
                     (click)="changeDuration(data + ' weeks',data)">{{data}} weeks</a>
             </div>
         </div>
-        <div>
+        <div [ngClass]="{pointertoggle: showpointerclass}">
             <Button type="button" type="submit" (click)="guestSearch()" class="btn btn-outline-primary btn-lg"><a
                     class="no-style">Search</a></Button>
         </div>

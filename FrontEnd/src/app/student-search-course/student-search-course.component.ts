@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from '../event.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { StudentService } from '../student.service';
+import { EventService } from '../event.service';
 
 @Component({
-  selector: 'app-guest-search',
-  templateUrl: './guest-search.component.html',
-  styleUrls: ['./guest-search.component.css']
+  selector: 'app-student-search-course',
+  templateUrl: './student-search-course.component.html',
+  styleUrls: ['./student-search-course.component.css']
 })
-export class GuestSearchComponent implements OnInit {
+export class StudentSearchCourseComponent implements OnInit {
 
   duration:any ;
   technology:any;
@@ -25,7 +26,8 @@ export class GuestSearchComponent implements OnInit {
   pointertoggle(){
     this.showpointerclass = false;
   }
-  constructor(private event : EventService, private aroute: ActivatedRoute, private route: Router) {
+  requestData: any = {};
+  constructor( private event : EventService , private student: StudentService,private aroute: ActivatedRoute, private route: Router) { 
     this.event.getTecnologies().subscribe(data=>{
       this.technologyData = data as string[];
     });
@@ -37,12 +39,12 @@ export class GuestSearchComponent implements OnInit {
       if(p.dur == undefined && p.tech == undefined){
         this.duration = "Duration";
         this.technology = "Technology";
-        this.event.getAllSearchGuest().subscribe(data=>{
+        this.student.getAllSearch().subscribe(data=>{
           this.courseArray = data;
           console.log(data);
         });
       }else{
-          this.event.getGuestSearch(({
+          this.student.getSearch(({
           "CDuration" : this.duration,
           "CTechnology" : this.technology
         })).subscribe(data => {
@@ -61,6 +63,7 @@ export class GuestSearchComponent implements OnInit {
   ngOnInit() {
   }
 
+  
   changeTechnology(name, id){
     this.technology = name;
     this.tId = id;
@@ -74,8 +77,17 @@ export class GuestSearchComponent implements OnInit {
     //console.log(typeof(this.dId));
   }
 
-  guestSearch(d){
-    this.route.navigate(['guest',this.dId,this.tId]);
+  studentSearch(d){
+    this.route.navigate(['searchCourses',this.dId,this.tId]);
   }
 
+  makeRequest(cid, mid){
+    this.requestData.StudentId = localStorage.id,
+    this.requestData.MentorId = mid,
+    this.requestData.CourseId = cid,
+    this.requestData.Status = "Request"
+    // console.log(this.requestData);
+    this.student.makeReq(this.requestData).subscribe();
+    this.route.navigate(['student'])
+  }
 }

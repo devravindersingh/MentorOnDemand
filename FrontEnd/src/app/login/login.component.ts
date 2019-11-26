@@ -36,25 +36,35 @@ export class LoginComponent implements OnInit {
     if(e.value.Role == 1){
       this._auth.loginUser(this.loginUserData)
     .subscribe(
-      res => {console.log(res.value); this.route.navigate(['/admin']); },
+      res => {console.log(res); 
+        localStorage.setItem('key', res.key);
+        localStorage.setItem('id',res.id);
+        this.route.navigate(['/admin']); },
       err => console.log(err)
     );
     }
     else if(e.value.Role == 2){
       this._auth.loginUser(this.loginUserData)
     .subscribe(
-      res => {console.log(res); this.route.navigate(['/mentor']); },
+      res => {console.log(res); 
+        localStorage.setItem('key', res.key);
+        localStorage.setItem('id',res.id);
+         this.route.navigate(['/mentor']); },
       err => console.log(err)
     );
     }
     else{
       this._auth.loginUser(this.loginUserData)
     .subscribe(
-      res => {console.log(res); this.route.navigate(['/student']); },
+      res => {console.log(res);
+        localStorage.setItem('key', res.key);
+        localStorage.setItem('id',res.id);
+        this.route.navigate(['/student']); },
       err => console.log(err)
     );
     }
     
   }
+
 
 }
