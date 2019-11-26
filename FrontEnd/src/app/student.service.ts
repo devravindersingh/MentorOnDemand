@@ -11,6 +11,7 @@ export class StudentService {
   private _getAllSearch = "https://localhost:5001/api/students/search";
   private _makeReq = "https://localhost:5001/api/students/PostRequest";
   private _getAllReq = "https://localhost:5001/api/students/request/";
+  private _upReq = "https://localhost:5001/api/students/PutRequest";
 
   constructor(private http: HttpClient) { }
 
@@ -32,6 +33,10 @@ export class StudentService {
 
   getAllReq(id){
     return this.http.get<any>(this._getAllReq+id);
+  }
+
+  upReq(model){
+    return this.http.put<any>(this._upReq,model);
   }
 }
 
